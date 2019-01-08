@@ -9,9 +9,18 @@ const jwtHelper = require('../config/jwtHelper');
 router.post('/register', ctrlUser.register);
 router.post('/authenticate', ctrlUser.authenticate);
 router.get('/userProfile',jwtHelper.verifyJwtToken, ctrlUser.userProfile);
+//Category
+router.get('/categories',category.categories);
 
-router.get('/categories',category);
-router.get('/items',items);
+router.get('/categories/:id',category.getCatById);
+router.post('/categories/add',category.AddCategories);
+router.post('/categories/update/:id',category.updateCategory);
+
+
+//Item
+router.get('/items',items.items);
+router.get('/items_category',items.itemsCat);
+router.get('/items_category_itemPrice',items.itemsCatDetail);
 
 module.exports = router;
 
