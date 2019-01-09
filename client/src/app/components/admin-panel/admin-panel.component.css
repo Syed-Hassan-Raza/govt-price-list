@@ -6,3 +6,58 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
       display: block;
     }
   }
+  .companyName{
+    font-size: 100%;
+}
+
+
+a:hover, a:active{
+    color: lightgray;
+}
+.mat-sidenav a{
+  margin: 5px;
+}
+.nav-caption{
+    display: inline-block;
+    padding-left: 6px;
+}
+.mat-toolbar{
+  height: 7vh;
+
+}
+
+div {
+    overflow: inherit;
+}
+.mat-sidenav{
+  min-width: 40vh !important;
+
+}
+.mat-sidenav-container{
+  background-color: white;
+  min-height: 93vh !important;
+}
+
+a{
+    text-decoration: none;
+
+    white-space: normal;
+}
+
+button{
+
+    min-width: min-content;
+}
+
+.example-icon {
+    padding: 0 14px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-sidenav-content{
+
+      text-align: center;
+  }

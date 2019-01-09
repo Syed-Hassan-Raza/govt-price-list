@@ -9,7 +9,27 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { appRoutes } from '../../routes';
 import { AdminPanelComponent } from './admin-panel.component';
 import { AppComponent } from 'src/app/app.component';
-
+import {
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatTableModule,
+  MatDividerModule,
+  MatSnackBarModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatSidenavModule,
+  MatListModule,
+  MatCheckboxModule,
+  MatProgressSpinnerModule,
+  MatMenuModule
+} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AdminPanelComponent,
@@ -20,10 +40,28 @@ import { AppComponent } from 'src/app/app.component';
     FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,,
-    AdminRouting
-
+    AdminRouting,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatMenuModule
   ],
   providers: [],
-  bootstrap: [UserPanelComponent]
+  bootstrap: [AdminPanelComponent]
 })
 export class AppModule { }

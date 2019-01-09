@@ -1,0 +1,23 @@
+
+table {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 200px;
+}
+.mat-card{
+  margin-left:25%;
+  max-width: 600px;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+.mat-cell{
+  text-align: center;
+
+}
+.actions_btns{
+  text-align:right;
+
+}

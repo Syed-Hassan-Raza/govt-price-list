@@ -6,6 +6,8 @@ import { SignInComponent } from './../../components/user/sign-in/sign-in.compone
 import { UserProfileComponent } from './../../components/user-profile/user-profile.component';
 import { AuthGuard } from './../../auth/auth.guard';
 import { AdminPanelComponent } from './../../components/admin-panel/admin-panel.component';
+import { CategoryComponent } from '../category/category.component';
+import { ItemComponent } from '../item/item.component';
 
 const appRoutes: Routes = [
   {
@@ -29,6 +31,10 @@ const appRoutes: Routes = [
         pathMatch: "full"
       }
     ]
-  }
+  },
+
+{
+  path: 'items', component:ItemComponent
+},
 ];
 export const AdminRouting = RouterModule.forRoot(appRoutes);

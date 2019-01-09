@@ -7,7 +7,7 @@ import { UserService } from '../../../shared/user.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  styleUrls: []
 })
 export class SignInComponent implements OnInit {
 
@@ -21,14 +21,14 @@ export class SignInComponent implements OnInit {
   serverErrorMessages: string;
   ngOnInit() {
     if(this.userService.isLoggedIn())
-    this.router.navigateByUrl('/userprofile');
+    this.router.navigateByUrl('/Dashboard');
   }
 
   onSubmit(form : NgForm){
     this.userService.login(form.value).subscribe(
       res => {
         this.userService.setToken(res['token']);
-        this.router.navigateByUrl('/userprofile');
+        this.router.navigateByUrl('/Dashboard');
       },
       err => {
         this.serverErrorMessages = err.error.message;

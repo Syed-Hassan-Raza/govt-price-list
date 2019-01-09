@@ -1,12 +1,15 @@
+import { ItemService } from './shared/item.service';
+import { CategoryService } from './shared/category.service';
 // built-in
 import { BrowserModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import 'hammerjs';
 import {
   MatToolbarModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
   MatOptionModule,
@@ -42,6 +45,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './components/layout/layout.component';
+import { CategoryComponent } from './components/category/category.component';
+import { ItemComponent } from './components/item/item.component';
 
 @NgModule({
   declarations: [
@@ -52,15 +57,19 @@ import { LayoutComponent } from './components/layout/layout.component';
     SignInComponent,
     AdminPanelComponent,
     LayoutComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    CategoryComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
@@ -83,7 +92,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-  },AuthGuard,UserService],
+  },AuthGuard,UserService,CategoryService,ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,7 +17,7 @@ module.exports = {
         res.status(200).json(cat);
       },
       itemsCatDetail: async (req, res, next) => {
-        const it = await itmD.find().populate('item').populate('category','Category_Name');
+        const it = await itmD.find().populate({path:'item',populate:{path:'category'}});
         res.status(200).json(it);
       },
     getItmById: async (req, res, next) => {

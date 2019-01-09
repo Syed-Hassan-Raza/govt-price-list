@@ -14,6 +14,8 @@ router.get('/categories',category.categories);
 
 router.get('/categories/:id',category.getCatById);
 router.post('/categories/add',category.AddCategories);
+router.post('/categories/delete/:id',category.deleteCategory);
+
 router.post('/categories/update/:id',category.updateCategory);
 
 
