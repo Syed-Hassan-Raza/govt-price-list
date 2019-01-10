@@ -1,8 +1,9 @@
+import { Category,Item } from './../../shared/models/category';
+import { CategoryService } from './../../shared/category.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatPaginator, MatSnackBar, MatTableDataSource } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Category, Item } from 'src/app/shared/models/category';
 import { ItemService } from 'src/app/shared/item.service';
 
 @Component({
@@ -10,85 +11,115 @@ import { ItemService } from 'src/app/shared/item.service';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
+
 export class ItemComponent implements OnInit {
   frm: FormGroup;
 
-  items: Item[];
-  dataSource = new MatTableDataSource<Item>(this.items);
+  items:any ;
+  Category:Category[];
+
+  dataSource = new MatTableDataSource<this.items>(this.items);
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ["Item_Name", "actions"];
+  displayedColumns: string[] = ["Category_Name","Item_Name","unit" ,"actions"];
 
   constructor(
     private itemService: ItemService,
     private router: Router,
-    private fb: FormBuilder,    private snackbar: MatSnackBar
+    private fb: FormBuilder,private snackbar: MatSnackBar,
+    private categoryService:CategoryService
 
   ) {
     this.frm = this.fb.group({
       id: [""],
-      Category_Name: ["", Validators.required]
+      Item_Name: ["", Validators.required],
+
+      Category_Name: ["", Validators.required],
+      unit:["",Validators.required]
     });
   }
 
   ngOnInit() {
     this.fetchData();
+    this. fetchCat();
     //this.dataSource.sort = this.sort;
   }
 
   fetchData() {
-    this.itemService.getItem().subscribe((data: Item[]) => {
-      this.items = data;
+    this.itemService.getItem().subscribe( res => {
+     this.items= res;
     });
   }
-  openDialog(id, name) {
-    if (id != null) {
+  fetchCat() {
+    this.categoryService.getCategory().subscribe((data: Category[]) => {
+      this.Category = data;
+    });
+  }
+  openDialog(id,cname,iname,unit) {
+    if (id != "") {
       this.frm.get("id").setValue(id);
-      this.frm.get("Category_Name").setValue(name);
+      this.frm.get("Category_Name").setValue(cname);
+      this.frm.get("Item_Name").setValue(iname);
+
+      this.frm.get("unit").setValue(unit);
+
     } else {
       this.frm.get("id").setValue("");
 
       this.frm.get("Category_Name").setValue("");
+      this.frm.get("Item_Name").setValue("");
+
+      this.frm.get("unit").setValue("");
+
     }
   }
-  submitData(id, name) {
+  submitData(id,cat, name,unit) {
 
     if (id=="") {
-      this.addData(name);
+     this.addData(cat,name,unit);
 
 
     } else {
-      this.editData(id, name);
+      this.editData(id,cat,name,unit);
 
     }
   }
-  editData(id,name) {
-  //   this.categoryService.editCategory(id,name).subscribe(() => {
-  //     this.snackbar.open(`Data Updated Successfully!`, "Ok", {
-  //       duration: 3000
-  //     });
-  //     this.fetchData();
+  editData(id,cat,name,unit) {
+    this.itemService.editItem(id,cat,name,unit).subscribe(() => {
+      this.snackbar.open(`Updated Successfully!`, "Ok", {
+        duration: 3000
+      });
+      this.fetchData();
 
-  // })
+   })
 }
-  addData(name) {
-  //   this.categoryService.addCategory(name).subscribe(() => {
-  //     this.snackbar.open(`${name} Added Successfully!`, "Ok", {
-  //       duration: 3000
-  //     });
-  //     this.fetchData();
+  addData(cat,name,unit) {
+     this.itemService.addItem(cat,name,unit).subscribe(() => {
+       this.snackbar.open(`${name} Added Successfully!`, "Ok", {
+         duration: 3000
+       });
+       this.fetchData();
 
-  // })
+   })
 }
   deleteData(id) {
-    /*  this.categoryService.deleteCategory(id).subscribe(() => {
+    this.itemService.deleteItem(id).subscribe(() => {
       this.snackbar.open(`Deleted Successfully!`, "Ok", {
         duration: 3000
       });
       this.fetchData();
 
-        }); */
+        });
 
 
+}
+hide(id){
+  this.itemService.hideItem(id).subscribe(() => {
+    this.snackbar.open(`hide Successfully!`, "Ok", {
+      duration: 3000
+    });
+    this.fetchData();
+
+      });
 }
 }

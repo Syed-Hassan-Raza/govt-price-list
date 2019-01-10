@@ -1,0 +1,47 @@
+
+<br><br><mat-card>
+    <h2>Add Pricing</h2>
+    <form [formGroup]="frm" class="frm">
+        <mat-form-field hidden  class="field-full-width">
+            <input matInput formControlName="id" #id>
+          </mat-form-field>
+          <mat-form-field  class="field-full-width">
+              <mat-select formControlName="Item_Name" placeholder="Choose Item" #Item_Name>
+
+                <mat-option *ngFor="let option of itemdetails" [value]="option.item._id"> {{option.item}}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+
+        <mat-form-field class="field-full-width">
+            <input matInput placeholder="First price" formControlName="fst" #fst>
+          </mat-form-field>
+          <mat-form-field class="field-full-width">
+              <input matInput placeholder="Second Price" formControlName="scnd" #scnd>
+            </mat-form-field>
+            <mat-form-field class="field-full-width">
+                <input matInput placeholder="Third Price" formControlName="thrd" #thrd>
+              </mat-form-field>
+          <mat-divider></mat-divider><br><br>
+          <button type="submit"  [disabled]="frm.pristine || frm.invalid" mat-raised-button (click)="submitData(Item_Name.value,fst.value,scnd.value,thrd.value)"data-dismiss="modal" color="accent">Save changes</button>
+&nbsp;        <button mat-raised-button  data-dismiss="modal">Close</button>
+
+          </form>
+        <mat-divider></mat-divider>
+        <br>
+        <br>
+      <h2>Today's Items Prices</h2>
+<div></div>
+<div class="row">
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Item</th><th>unit</th><th>price #1</th><th>price #2</th><th>price #3</th>
+              </tr>
+          <tr *ngFor="let i of itemdetails">
+            <td>{{i.item}}</td><td>{{i.ratea}}</td><td>{{i.rateb}}</td><td>{{i.ratec}}</td>
+          </tr>
+
+        </table>
+      </div>
+</mat-card>

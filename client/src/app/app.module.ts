@@ -9,6 +9,7 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import 'hammerjs';
 import {
   MatToolbarModule,
+  MatAutocompleteModule,
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
@@ -47,6 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CategoryComponent } from './components/category/category.component';
 import { ItemComponent } from './components/item/item.component';
+import { HiddenItmsComponent } from './components/hidden-itms/hidden-itms.component';
+import { PricingComponent } from './components/pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,9 @@ import { ItemComponent } from './components/item/item.component';
     LayoutComponent,
     UserPanelComponent,
     CategoryComponent,
-    ItemComponent
+    ItemComponent,
+    HiddenItmsComponent,
+    PricingComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,8 @@ import { ItemComponent } from './components/item/item.component';
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatAutocompleteModule,
+
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,

@@ -2,27 +2,38 @@
     <br>
 
     <mat-card>
-        <button mat-raised-button color="primary" (click)="openDialog()"  data-toggle="modal" data-target="#exampleModalCenter">Create New</button>
+        <button mat-raised-button color="primary" (click)="openDialog()"  data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="false">Create New</button>
         <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Ctegories</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Items</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
             <form [formGroup]="frm" class="frm">
-                <mat-form-field class="field-full-width">
-                  <input matInput placeholder="Category Name" formControlName="Category_Name" #Category_Name>
-                </mat-form-field>
                 <mat-form-field hidden  class="field-full-width">
                     <input matInput formControlName="id" #id>
                   </mat-form-field>
+                  <mat-form-field  class="field-full-width">
+                      <mat-select formControlName="Category_Name" placeholder="Choose Category" #Category_Name>
+
+                        <mat-option *ngFor="let option of Category" [value]="option._id"> {{option.Category_Name}}</mat-option>
+
+                      </mat-select>
+                    </mat-form-field>
+
+                <mat-form-field class="field-full-width">
+                    <input matInput placeholder="Item Name" formControlName="Item_Name" #Item_Name>
+                  </mat-form-field>
+                  <mat-form-field class="field-full-width">
+                      <input matInput placeholder="Unit eg kg" formControlName="unit" #unit>
+                    </mat-form-field>
                   <mat-divider></mat-divider><br><br>
-                  <button type="submit"  mat-raised-button (click)="submitData(id.value,Category_Name.value)"data-dismiss="modal" color="accent">Save changes</button>
+                  <button type="submit"  [disabled]="frm.pristine || frm.invalid" mat-raised-button (click)="submitData(id.value,Category_Name.value,Item_Name.value,unit.value)"data-dismiss="modal" color="accent">Save changes</button>
   &nbsp;        <button mat-raised-button  data-dismiss="modal">Close</button>
 
                   </form>
@@ -39,21 +50,41 @@
         <br>
 
         <table  mat-table [dataSource]="items"  width="50%">
-
+            <ng-container matColumnDef="Category_Name">
+                <th mat-header-cell *matHeaderCellDef>Category</th>
+                <td mat-cell *matCellDef="let element">{{element.category.Category_Name}}</td>
+            </ng-container>
             <ng-container matColumnDef="Item_Name">
                 <th mat-header-cell *matHeaderCellDef>Name</th>
                 <td mat-cell *matCellDef="let element">{{element.Item_Name}}</td>
             </ng-container>
-
+            <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef>Unit</th>
+                <td mat-cell *matCellDef="let element">{{element.unit}}</td>
+            </ng-container>
                         <ng-container matColumnDef="actions" class="actions_btns">
                                 <th mat-header-cell *matHeaderCellDef>Action</th>
                                 <td mat-cell *matCellDef="let element">
-               <button mat-raised-button color="primary" (click)="openDialog(element._id,element.Category_Name)"  data-toggle="modal" data-target="#exampleModalCenter">Edit</button>
+                                    &nbsp;
+
+                                    <a mat-raised-button color="primary" title="View"><mat-icon>pageview</mat-icon>
+                                    </a>
+
+                                    &nbsp;
+
+
+                                  <button mat-raised-button color="primary" (click)="openDialog(element._id,element.category._id,element.Item_Name,element.unit)"  data-toggle="modal" data-target="#exampleModalCenter"><mat-icon>mode_edit</mat-icon></button>
+                                  &nbsp;
+
+                                  <button mat-raised-button color="accent" title="Hide" (click)="hide(element._id)" ><mat-icon>remove_red_eye</mat-icon></button>
 
                          &nbsp;
 
-                         <button mat-raised-button color="warn" (click)="deleteData(element._id)" >Delete</button>
-                                </td>
+                         <button mat-raised-button color="warn" (click)="deleteData(element._id)" ><mat-icon>delete</mat-icon></button>
+
+
+
+                        </td>
                             </ng-container>
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

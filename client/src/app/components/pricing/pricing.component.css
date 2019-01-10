@@ -6,8 +6,8 @@ table {
   min-width: 200px;
 }
 .mat-card{
-  margin-left:25%;
-  max-width: 600px;
+  margin-left:15%;
+  max-width: 1000px;
 }
 
 th.mat-header-cell {
@@ -22,5 +22,5 @@ th.mat-header-cell {
 
 }
 .field-full-width{
-  width: 100%;
+  margin: 5px;
 }

@@ -1,3 +1,5 @@
+import { PricingComponent } from './components/pricing/pricing.component';
+import { HiddenItmsComponent } from './components/hidden-itms/hidden-itms.component';
 import { CategoryComponent } from './components/category/category.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { Routes } from '@angular/router';
@@ -20,12 +22,7 @@ export const appRoutes: Routes = [
     {
         path: 'userprofile', component: UserProfileComponent,canActivate:[AuthGuard]
     },
-    {
-      path: 'categories', component: CategoryComponent
-  },
-  {
-    path: 'items', component:ItemComponent
-  },
+
     {
         path: '', redirectTo: '/login', pathMatch: 'full'
     },
@@ -35,23 +32,31 @@ export const appRoutes: Routes = [
     },
     {
       path: "Dashboard",
-      component:AdminPanelComponent
+      component:AdminPanelComponent,
+      children: [
+    {
+      path:"categories",
+      component:CategoryComponent,
     },
     {
-      path: "Admin",
-      component: AdminPanelComponent,
-      children: [
-
-
-        {
-          path: "",
-          component: UserProfileComponent,
-          canActivate: [AuthGuard]
-        },
-        {
-          path: "",
-          component:AdminPanelComponent
-        }
-      ]
+      path:"items",
+      component:ItemComponent,
     }
+    ,
+    {
+      path:"hidden_items",
+      component:HiddenItmsComponent,
+    }
+    ,
+    {
+      path:"pricing",
+      component:ItemComponent,
+    }
+    ,
+    {
+      path:"add_pricing",
+      component:PricingComponent,
+    }
+  ]
+}
 ];

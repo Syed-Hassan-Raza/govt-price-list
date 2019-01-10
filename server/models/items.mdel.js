@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const itemSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: "categories" },
+
   Item_Name: {
     type: String,
     required: "Full name can't be empty",
@@ -10,6 +11,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  hidden: {
+    type:Boolean,
+    default:false,
+ },
  itemDetail: [{ type: mongoose.Schema.Types.ObjectId, ref: "itemdetails" }]
 });
 
