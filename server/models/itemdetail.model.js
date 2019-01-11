@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
 const itemDetailSchema = new mongoose.Schema({
     item: { type: mongoose.Schema.Types.ObjectId, ref: "items" },
    
@@ -18,7 +21,7 @@ const itemDetailSchema = new mongoose.Schema({
     },
     date: {
       type:Date,
-      default:Date.now(),
+      default:today = mm + '/' + dd + '/' + yyyy,
     }
   });
   module.exports = mongoose.model("itemdetails", itemDetailSchema);

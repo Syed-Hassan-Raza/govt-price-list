@@ -1,3 +1,4 @@
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { HiddenItmsComponent } from './components/hidden-itms/hidden-itms.component';
 import { CategoryComponent } from './components/category/category.component';
@@ -41,6 +42,10 @@ export const appRoutes: Routes = [
     {
       path:"items",
       component:ItemComponent,
+    }
+    , {
+      path:"item_details/:id",
+      component:ItemDetailComponent,
     }
     ,
     {

@@ -8,7 +8,7 @@
           <mat-form-field  class="field-full-width">
               <mat-select formControlName="Item_Name" placeholder="Choose Item" #Item_Name>
 
-                <mat-option *ngFor="let option of itemdetails" [value]="option.item._id"> {{option.item}}</mat-option>
+                <mat-option *ngFor="let option of items" [value]="option._id"> {{option.Item_Name}}</mat-option>
 
               </mat-select>
             </mat-form-field>
@@ -23,8 +23,7 @@
                 <input matInput placeholder="Third Price" formControlName="thrd" #thrd>
               </mat-form-field>
           <mat-divider></mat-divider><br><br>
-          <button type="submit"  [disabled]="frm.pristine || frm.invalid" mat-raised-button (click)="submitData(Item_Name.value,fst.value,scnd.value,thrd.value)"data-dismiss="modal" color="accent">Save changes</button>
-&nbsp;        <button mat-raised-button  data-dismiss="modal">Close</button>
+          <button type="submit"  [disabled]="frm.pristine || frm.invalid" mat-raised-button (click)="submitData(Item_Name.value,fst.value,scnd.value,thrd.value)"color="accent">Save</button>
 
           </form>
         <mat-divider></mat-divider>
@@ -36,10 +35,14 @@
 
         <table class="table table-bordered">
             <tr>
-                <th>Item</th><th>unit</th><th>price #1</th><th>price #2</th><th>price #3</th>
+                <th>Item</th><th>unit</th><th>price #1</th><th>price #2</th><th>price #3</th><th>Remove Price</th>
               </tr>
           <tr *ngFor="let i of itemdetails">
-            <td>{{i.item}}</td><td>{{i.ratea}}</td><td>{{i.rateb}}</td><td>{{i.ratec}}</td>
+            <td>{{i.item.Item_Name}}</td><td>{{i.item.unit}}</td><td>{{i.ratea}}</td><td>{{i.rateb}}</td><td>{{i.ratec}}</td><td>
+                <button mat-raised-button color="warn" title="Shoe" (click)="delete(i._id)" ><mat-icon>remove</mat-icon></button>
+
+                  </td>
+
           </tr>
 
         </table>

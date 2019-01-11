@@ -9,9 +9,16 @@ import { environment } from 'src/environments/environment';
 export class ItemService {
 
   constructor(private http: HttpClient) { }
+getOnlyItm(){
+  return this.http.get(environment.apiBaseUrl + '/items');
 
+}
   getItem() {
     return this.http.get(environment.apiBaseUrl + '/items_category');
+  }
+  viewDetails(items_prices){
+    return this.http.get(environment.apiBaseUrl + '/items_prices',items_prices);
+
   }
   hiddenItems(){
     return this.http.get(environment.apiBaseUrl + '/items_category/hidden');
@@ -52,6 +59,9 @@ export class ItemService {
   }
   deleteItem(id){
     return this.http.post(`${environment.apiBaseUrl}/items/delete/${id}`,id);
+  }
+  deleteItemDetail(id){
+    return this.http.post(`${environment.apiBaseUrl}/items_prices/delete/${id}`,id);
   }
   hideItem(id){
     return this.http.post(`${environment.apiBaseUrl}/items_category/hide/${id}`,id);

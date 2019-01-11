@@ -4,7 +4,10 @@ const _ = require('lodash');
 
 const itm = mongoose.model('items');
 const itmD = mongoose.model('itemdetails');
-
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
 //in populate string consist of property name which declare in child model
 module.exports = {
 
@@ -33,12 +36,20 @@ module.exports = {
         const result = await itm.findByIdAndUpdate(id, {hidden:false });
         res.status(200).json({ success: true });
       },
+
+
       itemsTodayPrices: async (req, res, next) => {
-        const it = await itmD.find({date:Date.now()}).populate('item');
+        const it = await itmD.find({date:today = mm + '/' + dd + '/' + yyyy}).populate('item');
         res.status(200).json(it);
       },
       itemsCatDetail: async (req, res, next) => {
         const it = await itmD.find().populate({path:'item',populate:{path:'category'}});
+        res.status(200).json(it);
+      },
+
+      itemsCatDetailFilter: async (req, res, next) => {
+
+        const it = await itmD.find(req.query).populate('item');
         res.status(200).json(it);
       },
 
@@ -71,5 +82,10 @@ module.exports = {
     const {id}=req.params;
     const result=await itm.findByIdAndRemove(id);
     res.status(200).json({success:true});
-      }
+      },
+      deleteItemDetail:async(req,res,next)=>{
+        const {id}=req.params;
+        const result=await itmD.findByIdAndRemove(id);
+        res.status(200).json({success:true});
+          }
 }

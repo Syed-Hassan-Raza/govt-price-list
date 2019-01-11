@@ -1,0 +1,28 @@
+
+<br><br><mat-card>
+<a mat-raised-button color="primary" routerLink="/Dashboard/items"><mat-icon>arrow_back</mat-icon> Go back </a>
+<br>
+      <h2 >Item Details</h2>
+      <mat-divider></mat-divider>
+
+<div></div>
+<div class="row">
+
+        <table class="table table-bordered">
+            <tr>
+            <th>Price #1</th><th>Price #2</th><th>Price #3</th><th>Date</th><th>Remove</th>
+              </tr>
+          <tr *ngFor="let i of itemdetails">
+          <td>{{i.ratea}}</td><td>{{i.rateb}}</td><td>{{i.ratec}}</td>
+          <td>{{i.date}}</td>
+
+          <td>
+                <button mat-raised-button color="warn" title="Shoe" (click)="delete(i._id)" ><mat-icon>remove</mat-icon></button>
+
+                  </td>
+
+          </tr>
+
+        </table>
+      </div>
+</mat-card>

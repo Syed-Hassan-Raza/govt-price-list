@@ -67,7 +67,7 @@
                                 <td mat-cell *matCellDef="let element">
                                     &nbsp;
 
-                                    <a mat-raised-button color="primary" title="View"><mat-icon>pageview</mat-icon>
+                                    <a mat-raised-button color="primary"(click)="itemDetail(element._id)" title="View"><mat-icon>pageview</mat-icon>
                                     </a>
 
                                     &nbsp;

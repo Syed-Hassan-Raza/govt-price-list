@@ -20,7 +20,7 @@ module.exports = {
   getCatByName: async (req, res, next) => {
     const {id} = req.params;
 
-    const cat = await Category.find({Category_Name:req.params});
+    const cat = await Category.find({$Category_Name:req.params});
        res.status(200).json(cat);
 
   },

@@ -50,6 +50,7 @@ import { CategoryComponent } from './components/category/category.component';
 import { ItemComponent } from './components/item/item.component';
 import { HiddenItmsComponent } from './components/hidden-itms/hidden-itms.component';
 import { PricingComponent } from './components/pricing/pricing.component';
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { PricingComponent } from './components/pricing/pricing.component';
     CategoryComponent,
     ItemComponent,
     HiddenItmsComponent,
-    PricingComponent
+    PricingComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,

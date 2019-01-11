@@ -10,3 +10,10 @@ export class Item{
     Category_Name:string;
   };
 }
+export class itemDetail{
+  item:any;
+  ratea:string;
+  rateb:string;
+  ratec:string;
+
+}

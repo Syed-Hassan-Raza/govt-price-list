@@ -10,8 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PricingComponent implements OnInit {
   frm: FormGroup;
-
+items:any;
 itemdetails:any;
+
   constructor( private itemService: ItemService,
     private fb: FormBuilder,private snackbar: MatSnackBar) {
       this.frm = this.fb.group({
@@ -26,10 +27,17 @@ itemdetails:any;
      }
 
   ngOnInit() {
+    this.fetchData();
+    this.fetchItms();
   }
   fetchData() {
     this.itemService.todayPricing().subscribe( res => {
      this.itemdetails= res;
+    });
+  }
+  fetchItms() {
+    this.itemService.getOnlyItm().subscribe( res => {
+     this.items= res;
     });
   }
   submitData(itmid,fst,scnd,trd){
@@ -41,6 +49,15 @@ itemdetails:any;
       this.fetchData();
 
   })
+  }
+  delete(id){
+    this.itemService.deleteItemDetail(id).subscribe(() => {
+      this.snackbar.open(`Remove Successfully!`, "Ok", {
+        duration: 3000
+      });
+      this.fetchData();
+
+        });
   }
 
 }

@@ -102,6 +102,10 @@ export class ItemComponent implements OnInit {
 
    })
 }
+itemDetail(id){
+  this.router.navigate(['/Dashboard/item_details/' + id + '']);
+
+}
   deleteData(id) {
     this.itemService.deleteItem(id).subscribe(() => {
       this.snackbar.open(`Deleted Successfully!`, "Ok", {
