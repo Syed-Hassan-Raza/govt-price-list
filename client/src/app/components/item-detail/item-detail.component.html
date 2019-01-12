@@ -14,7 +14,7 @@
               </tr>
           <tr *ngFor="let i of itemdetails">
           <td>{{i.ratea}}</td><td>{{i.rateb}}</td><td>{{i.ratec}}</td>
-          <td>{{i.date}}</td>
+          <td>{{i.date| date}}</td>
 
           <td>
                 <button mat-raised-button color="warn" title="Shoe" (click)="delete(i._id)" ><mat-icon>remove</mat-icon></button>

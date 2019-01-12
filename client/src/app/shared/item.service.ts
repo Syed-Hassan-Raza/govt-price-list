@@ -1,7 +1,8 @@
-import { Item } from './models/category';
+import { Item, itemDetail } from './models/category';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,16 @@ getOnlyItm(){
   getItem() {
     return this.http.get(environment.apiBaseUrl + '/items_category');
   }
-  viewDetails(items_prices){
-    return this.http.get(environment.apiBaseUrl + '/items_prices',items_prices);
+  viewDetails(it){
+    const itm={
+item:it
+    };
+    return this.http.post(environment.apiBaseUrl + '/items_prices',itm);
 
   }
+  //getCat(name: string): Observable<itemDetail> {
+    //return this.http.get<itemDetail>(environment.apiBaseUrl + '/items_prices',name);
+ // }
   hiddenItems(){
     return this.http.get(environment.apiBaseUrl + '/items_category/hidden');
 
@@ -43,7 +50,8 @@ getOnlyItm(){
     const itm={
       category:category,
       Item_Name:name,
-      unit:unit
+      unit:unit,
+     // img:image,
 
     };
     return this.http.post(environment.apiBaseUrl+'/items/add',itm);

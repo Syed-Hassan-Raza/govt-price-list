@@ -51,6 +51,8 @@ itemdetails:any;
   })
   }
   delete(id){
+    if (confirm("Are you sure you want to delete it..?")) {
+
     this.itemService.deleteItemDetail(id).subscribe(() => {
       this.snackbar.open(`Remove Successfully!`, "Ok", {
         duration: 3000
@@ -58,6 +60,7 @@ itemdetails:any;
       this.fetchData();
 
         });
+      }
   }
 
 }

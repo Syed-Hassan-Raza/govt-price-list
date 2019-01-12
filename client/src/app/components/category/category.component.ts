@@ -82,6 +82,8 @@ export class CategoryComponent implements OnInit {
   })
 }
   deleteData(id) {
+    if (confirm("Are you sure you want to delete it..?")) {
+
      this.categoryService.deleteCategory(id).subscribe(() => {
       this.snackbar.open(`Deleted Successfully!`, "Ok", {
         duration: 3000
@@ -89,6 +91,7 @@ export class CategoryComponent implements OnInit {
       this.fetchData();
 
         });
+      }
 
 
 }

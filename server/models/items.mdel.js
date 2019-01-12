@@ -11,6 +11,9 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  img:{
+    type:String
+  },
   hidden: {
     type:Boolean,
     default:false,

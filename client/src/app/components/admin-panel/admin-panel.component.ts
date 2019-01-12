@@ -12,6 +12,7 @@ export class AdminPanelComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.router.navigate(['/Dashboard/user']);
   }
   onLogout(){
     this.userService.deleteToken();

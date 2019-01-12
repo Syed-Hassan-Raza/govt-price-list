@@ -14,8 +14,8 @@ import { ItemService } from 'src/app/shared/item.service';
 
 export class ItemComponent implements OnInit {
   frm: FormGroup;
-
-  items:any ;
+  imageUrl: string = "../../../assets/img";
+  fileToUpload: File = null;  items:any ;
   Category:Category[];
 
   dataSource = new MatTableDataSource<this.items>(this.items);
@@ -55,6 +55,17 @@ export class ItemComponent implements OnInit {
       this.Category = data;
     });
   }
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    //Show image preview
+    var reader = new FileReader();
+    reader.onload = (event:any) => {
+      this.imageUrl = event.target.result;
+    }
+    reader.readAsDataURL(this.fileToUpload);
+  }
+
   openDialog(id,cname,iname,unit) {
     if (id != "") {
       this.frm.get("id").setValue(id);
@@ -76,7 +87,9 @@ export class ItemComponent implements OnInit {
   submitData(id,cat, name,unit) {
 
     if (id=="") {
-     this.addData(cat,name,unit);
+
+    this.addData(cat,name,unit);
+//console.log(this.fileToUpload);
 
 
     } else {
@@ -100,6 +113,7 @@ export class ItemComponent implements OnInit {
        });
        this.fetchData();
 
+
    })
 }
 itemDetail(id){
@@ -107,6 +121,8 @@ itemDetail(id){
 
 }
   deleteData(id) {
+    if (confirm("Are you sure you want to delete it..?")) {
+
     this.itemService.deleteItem(id).subscribe(() => {
       this.snackbar.open(`Deleted Successfully!`, "Ok", {
         duration: 3000
@@ -114,10 +130,11 @@ itemDetail(id){
       this.fetchData();
 
         });
-
+      }
 
 }
 hide(id){
+  if (confirm("Are you sure you want to hide it..?")) {
   this.itemService.hideItem(id).subscribe(() => {
     this.snackbar.open(`hide Successfully!`, "Ok", {
       duration: 3000
@@ -125,5 +142,7 @@ hide(id){
     this.fetchData();
 
       });
+    }
 }
+
 }

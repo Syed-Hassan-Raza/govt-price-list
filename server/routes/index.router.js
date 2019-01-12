@@ -36,9 +36,9 @@ router.post('/items/add',items.AddItem);
 router.post('/items/addPricing',items.AddItemDetail);
 
 router.post('/items/update/:id',items.updateItem);
-router.post('/items/delete/:id',items.deleteItem);
+router.post('/items/delete/:id',items.deleteItem,jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.post('/items_prices/delete/:id',items.deleteItemDetail);
-router.get('/items_prices',items.itemsCatDetailFilter);
+router.post('/items_prices',items.itemsCatDetailFilter);
 
 
 

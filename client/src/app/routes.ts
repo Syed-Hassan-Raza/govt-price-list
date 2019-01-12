@@ -12,32 +12,26 @@ import { AuthGuard } from './auth/auth.guard';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { ItemComponent } from './components/item/item.component';
 export const appRoutes: Routes = [
+
     {
-        path: 'signup', component: UserComponent,
-        children: [{ path: '', component: SignUpComponent }]
+        path: 'login', component:SignInComponent,
     },
     {
-        path: 'login', component: UserComponent,
-        children: [{ path: '', component: SignInComponent }]
-    },
-    {
-        path: 'userprofile', component: UserProfileComponent,canActivate:[AuthGuard]
-    },
+      path: 'signup', component:SignUpComponent
+
+  },
 
     {
         path: '', redirectTo: '/login', pathMatch: 'full'
     },
 
     {
-      path: 'User', component:UserPanelComponent
-    },
-    {
       path: "Dashboard",
       component:AdminPanelComponent,
       children: [
     {
       path:"categories",
-      component:CategoryComponent,
+      component:CategoryComponent,canActivate:[AuthGuard]
     },
     {
       path:"items",
@@ -45,23 +39,33 @@ export const appRoutes: Routes = [
     }
     , {
       path:"item_details/:id",
-      component:ItemDetailComponent,
+      component:ItemDetailComponent,canActivate:[AuthGuard]
     }
     ,
     {
       path:"hidden_items",
-      component:HiddenItmsComponent,
+      component:HiddenItmsComponent,canActivate:[AuthGuard]
     }
     ,
     {
       path:"pricing",
-      component:ItemComponent,
+      component:ItemComponent,canActivate:[AuthGuard]
     }
     ,
     {
       path:"add_pricing",
-      component:PricingComponent,
+      component:PricingComponent,canActivate:[AuthGuard]
     }
-  ]
+    ,{
+      path:"user",
+      component:UserProfileComponent,canActivate:[AuthGuard]
+    },
+    {
+      path: 'signup', component:SignUpComponent
+
+  },
+
+  ],
+
 }
 ];
