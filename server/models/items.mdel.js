@@ -12,7 +12,7 @@ const itemSchema = new mongoose.Schema({
     required: true
   },
   img:{
-    type:String
+     data: Buffer, contentType: String 
   },
   hidden: {
     type:Boolean,

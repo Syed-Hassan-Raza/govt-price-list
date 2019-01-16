@@ -1,6 +1,6 @@
 
 <br><br><mat-card>
-    <h2>Add Pricing</h2>
+    <h4>Add Pricing</h4>
     <form [formGroup]="frm" class="frm">
         <mat-form-field hidden  class="field-full-width">
             <input matInput formControlName="id" #id>
@@ -26,10 +26,11 @@
           <button type="submit"  [disabled]="frm.pristine || frm.invalid" mat-raised-button (click)="submitData(Item_Name.value,fst.value,scnd.value,thrd.value)"color="accent">Save</button>
 
           </form>
+          <br>
         <mat-divider></mat-divider>
         <br>
         <br>
-      <h2>Today's Items Prices</h2>
+      <h4>Today's Items Prices</h4>
 <div></div>
 <div class="row">
 

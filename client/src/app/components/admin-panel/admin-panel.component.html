@@ -1,45 +1,76 @@
-<div>
-    <mat-toolbar color="primary">
-      <div fxShow="true" fxHide.gt-sm="true">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
-      <a mat-button class="companyName" routerLink="/">
-        <span>FanTech labs</span>
-      </a>
+<div style="height: 100vh;">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+        <mat-icon>menu</mat-icon>
+      </button>
+ <a routerLink="/Dashboard/user"><span  >Fantech lab</span></a>
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
-        <a mat-button routerLink="/Dashboard/categories">Categories</a>
-        <a mat-button routerLink="/Dashboard/items">Items</a>
-        <a mat-button routerLink="/Dashboard/hidden_items">Hidden Items</a>
-        <a mat-button routerLink="/Dashboard/add_pricing">Add Pricing</a>
-        <a mat-button (click)="onLogout()">Logout</a>
-        <a mat-button routerLink="/Dashboard/signup">Register</a>
-
+        <!-- The following menu items will be hidden on both SM and XS screen sizes -->
+        <a  routerLink="/Dashboard/categories" mat-button >
+          <mat-icon>category</mat-icon>
+          Categories
+        </a>
+        <a  routerLink="/Dashboard/items" mat-button>
+          <mat-icon>description</mat-icon>
+          Items
+        </a>
+        <a  routerLink="/Dashboard/hidden_items" mat-button>
+          <mat-icon>grid_off</mat-icon>
+          Hidden items
+        </a>
+        <a  routerLink="/Dashboard/add_pricing" mat-button>
+          <mat-icon>add_box</mat-icon>
+          Pricing
+        </a>
+        <a  routerLink="/Dashboard/signup" mat-button>
+          <mat-icon>account_box</mat-icon>
+         Register
+        </a>
+        <a  (click)="onLogout()" mat-button>
+          <mat-icon>logout</mat-icon>
+         Logout
+        </a>
       </div>
-    </mat-toolbar>
-    <mat-sidenav-container fxFlexFill class="example-container">
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-      <mat-sidenav  color="primary" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
-        <div fxLayout="column">
-            <a mat-list-item routerLink="/home">
-              <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+  <mat-sidenav-container fxFlexFill>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+          <a (click)="sidenav.toggle()" routerLink="/Dashboard/categories" mat-button >
+            <mat-icon>category</mat-icon>
+            Categories
           </a>
-
-        </div>
-        <div fxLayout="column">
-            <a routerLink="" mat-list-item (click)="onLogout()">
-              <mat-icon>logout</mat-icon> <span class="nav-caption">Logout</span>
+          <a (click)="sidenav.toggle()" routerLink="/Dashboard/items" mat-button>
+            <mat-icon>description</mat-icon>
+            Items
           </a>
+          <a (click)="sidenav.toggle()" routerLink="/Dashboard/hidden_items" mat-button>
+            <mat-icon>grid_off</mat-icon>
+            Hidden items
+          </a>
+          <a (click)="sidenav.toggle()" routerLink="/Dashboard/add_pricing" mat-button>
+            <mat-icon>add_box</mat-icon>
+            Pricing
+          </a>
+          <a (click)="sidenav.toggle()"  routerLink="/Dashboard/signup" mat-button>
+            <mat-icon>account_box</mat-icon>
+           Register
+          </a>
+          <a  (click)="onLogout()" mat-button>
+            <mat-icon>logout</mat-icon>
+           Logout
+          </a>
+        <a (click)="sidenav.toggle()" mat-list-item>
+          <mat-icon>close</mat-icon> Close
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
 
-        </div>
-      </mat-sidenav>
-
-          <router-outlet></router-outlet>
-
-    </mat-sidenav-container>
-  </div>
-<div>
-
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

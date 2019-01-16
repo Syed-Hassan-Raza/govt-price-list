@@ -52,6 +52,8 @@ import { HiddenItmsComponent } from './components/hidden-itms/hidden-itms.compon
 import { PricingComponent } from './components/pricing/pricing.component';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 
+import { FlexLayoutModule } from "@angular/flex-layout";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +77,7 @@ import { ItemDetailComponent } from './components/item-detail/item-detail.compon
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatToolbarModule,
     MatAutocompleteModule,
 

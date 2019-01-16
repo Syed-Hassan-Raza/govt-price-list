@@ -24,9 +24,9 @@ export class CategoryService {
       Category_Name:name,
 
     };
-    return this.http.post(`${environment.apiBaseUrl}/categories/update/${id}`,cat);
+    return this.http.put(`${environment.apiBaseUrl}/categories/update/${id}`,cat);
   }
   deleteCategory(id){
-    return this.http.post(`${environment.apiBaseUrl}/categories/delete/${id}`,id);
+    return this.http.delete(`${environment.apiBaseUrl}/categories/delete/${id}`,id);
   }
 }

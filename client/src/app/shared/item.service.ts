@@ -63,20 +63,20 @@ item:it
       unit:unit
 
     };
-    return this.http.post(`${environment.apiBaseUrl}/items/update/${id}`,itm);
+    return this.http.put(`${environment.apiBaseUrl}/items/update/${id}`,itm);
   }
   deleteItem(id){
-    return this.http.post(`${environment.apiBaseUrl}/items/delete/${id}`,id);
+    return this.http.delete(`${environment.apiBaseUrl}/items/delete/${id}`,id);
   }
   deleteItemDetail(id){
-    return this.http.post(`${environment.apiBaseUrl}/items_prices/delete/${id}`,id);
+    return this.http.delete(`${environment.apiBaseUrl}/items_prices/delete/${id}`,id);
   }
   hideItem(id){
-    return this.http.post(`${environment.apiBaseUrl}/items_category/hide/${id}`,id);
+    return this.http.put(`${environment.apiBaseUrl}/items_category/hide/${id}`,id);
 
   }
   showItem(id){
-    return this.http.post(`${environment.apiBaseUrl}/items_category/show/${id}`,id);
+    return this.http.put(`${environment.apiBaseUrl}/items_category/show/${id}`,id);
 
   }
 }
